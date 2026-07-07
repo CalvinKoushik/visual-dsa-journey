@@ -9,8 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as LearnDsaRouteImport } from './routes/learn-dsa'
 import { Route as IndexRouteImport } from './routes/index'
 
+const LearnDsaRoute = LearnDsaRouteImport.update({
+  id: '/learn-dsa',
+  path: '/learn-dsa',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +25,39 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/learn-dsa': typeof LearnDsaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/learn-dsa': typeof LearnDsaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/learn-dsa': typeof LearnDsaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/learn-dsa'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/learn-dsa'
+  id: '__root__' | '/' | '/learn-dsa'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LearnDsaRoute: typeof LearnDsaRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/learn-dsa': {
+      id: '/learn-dsa'
+      path: '/learn-dsa'
+      fullPath: '/learn-dsa'
+      preLoaderRoute: typeof LearnDsaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +70,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LearnDsaRoute: LearnDsaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
