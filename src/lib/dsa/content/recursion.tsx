@@ -415,7 +415,7 @@ export const RECURSION_LESSONS: Record<string, LessonContent> = {
       { case: "Space", value: "O(log n)", explain: "Recursion depth." },
     ],
     spaceComplexity: "O(log n) for fast power.",
-    realWorld: [{ title: "Cryptography", value: "" as any, body: "Modular exponentiation for RSA uses this exact trick." }, { title: "Graphics transforms", body: "Matrix powers use the same halving idea." }],
+    realWorld: [{ title: "Cryptography", body: "Modular exponentiation for RSA uses this exact trick." }, { title: "Graphics transforms", body: "Matrix powers use the same halving idea." }],
     quiz: [{ q: "Fast power's time complexity?", options: ["O(n²)", "O(n)", "O(log n)", "O(1)"], answer: 2, why: "Halving n each step gives log₂(n) recursion depth." }],
     visualizer: <StaticStory>Trace power(2, 10): 10 is even → h = power(2, 5); 5 is odd → 2 × power(2, 4); 4 → h × h where h = power(2, 2); …</StaticStory>,
     ...nav("power"),
