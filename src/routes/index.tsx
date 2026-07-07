@@ -13,10 +13,13 @@ function Home() {
       <section className="relative overflow-hidden">
         <div className="mx-auto grid max-w-7xl gap-12 px-4 py-14 md:grid-cols-2 md:px-8 md:py-24">
           <div className="flex flex-col justify-center">
-            <span className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-accent/40 bg-accent/20 px-3 py-1 text-xs font-bold uppercase tracking-widest text-accent-foreground">
-              <Sparkles className="h-3.5 w-3.5" />
-              TechKnots DSA Visualizer
-            </span>
+            <div className="mb-6">
+  <img
+    src="/images/techknots-logo.png"
+    alt="TechKnots - One knot at a time"
+    className="h-auto w-72 max-w-full object-contain md:w-80"
+  />
+</div>
             <h1 className="font-display text-5xl font-black leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
               What if you could <span className="gradient-text">see an algorithm thinking?</span>
             </h1>
