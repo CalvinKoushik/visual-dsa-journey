@@ -9,38 +9,248 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SortingRouteImport } from './routes/sorting'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as RecursionRouteImport } from './routes/recursion'
+import { Route as PracticeRouteImport } from './routes/practice'
+import { Route as LearnDsaRouteImport } from './routes/learn-dsa'
+import { Route as GraphRouteImport } from './routes/graph'
+import { Route as CompareRouteImport } from './routes/compare'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SortingIndexRouteImport } from './routes/sorting.index'
+import { Route as RecursionIndexRouteImport } from './routes/recursion.index'
+import { Route as GraphIndexRouteImport } from './routes/graph.index'
+import { Route as SortingAlgoRouteImport } from './routes/sorting.$algo'
+import { Route as RecursionTopicRouteImport } from './routes/recursion.$topic'
+import { Route as GraphTopicRouteImport } from './routes/graph.$topic'
 
+const SortingRoute = SortingRouteImport.update({
+  id: '/sorting',
+  path: '/sorting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecursionRoute = RecursionRouteImport.update({
+  id: '/recursion',
+  path: '/recursion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PracticeRoute = PracticeRouteImport.update({
+  id: '/practice',
+  path: '/practice',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnDsaRoute = LearnDsaRouteImport.update({
+  id: '/learn-dsa',
+  path: '/learn-dsa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GraphRoute = GraphRouteImport.update({
+  id: '/graph',
+  path: '/graph',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompareRoute = CompareRouteImport.update({
+  id: '/compare',
+  path: '/compare',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SortingIndexRoute = SortingIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SortingRoute,
+} as any)
+const RecursionIndexRoute = RecursionIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => RecursionRoute,
+} as any)
+const GraphIndexRoute = GraphIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => GraphRoute,
+} as any)
+const SortingAlgoRoute = SortingAlgoRouteImport.update({
+  id: '/$algo',
+  path: '/$algo',
+  getParentRoute: () => SortingRoute,
+} as any)
+const RecursionTopicRoute = RecursionTopicRouteImport.update({
+  id: '/$topic',
+  path: '/$topic',
+  getParentRoute: () => RecursionRoute,
+} as any)
+const GraphTopicRoute = GraphTopicRouteImport.update({
+  id: '/$topic',
+  path: '/$topic',
+  getParentRoute: () => GraphRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/compare': typeof CompareRoute
+  '/graph': typeof GraphRouteWithChildren
+  '/learn-dsa': typeof LearnDsaRoute
+  '/practice': typeof PracticeRoute
+  '/recursion': typeof RecursionRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sorting': typeof SortingRouteWithChildren
+  '/graph/$topic': typeof GraphTopicRoute
+  '/recursion/$topic': typeof RecursionTopicRoute
+  '/sorting/$algo': typeof SortingAlgoRoute
+  '/graph/': typeof GraphIndexRoute
+  '/recursion/': typeof RecursionIndexRoute
+  '/sorting/': typeof SortingIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/compare': typeof CompareRoute
+  '/learn-dsa': typeof LearnDsaRoute
+  '/practice': typeof PracticeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/graph/$topic': typeof GraphTopicRoute
+  '/recursion/$topic': typeof RecursionTopicRoute
+  '/sorting/$algo': typeof SortingAlgoRoute
+  '/graph': typeof GraphIndexRoute
+  '/recursion': typeof RecursionIndexRoute
+  '/sorting': typeof SortingIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/compare': typeof CompareRoute
+  '/graph': typeof GraphRouteWithChildren
+  '/learn-dsa': typeof LearnDsaRoute
+  '/practice': typeof PracticeRoute
+  '/recursion': typeof RecursionRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sorting': typeof SortingRouteWithChildren
+  '/graph/$topic': typeof GraphTopicRoute
+  '/recursion/$topic': typeof RecursionTopicRoute
+  '/sorting/$algo': typeof SortingAlgoRoute
+  '/graph/': typeof GraphIndexRoute
+  '/recursion/': typeof RecursionIndexRoute
+  '/sorting/': typeof SortingIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/compare'
+    | '/graph'
+    | '/learn-dsa'
+    | '/practice'
+    | '/recursion'
+    | '/sitemap.xml'
+    | '/sorting'
+    | '/graph/$topic'
+    | '/recursion/$topic'
+    | '/sorting/$algo'
+    | '/graph/'
+    | '/recursion/'
+    | '/sorting/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/compare'
+    | '/learn-dsa'
+    | '/practice'
+    | '/sitemap.xml'
+    | '/graph/$topic'
+    | '/recursion/$topic'
+    | '/sorting/$algo'
+    | '/graph'
+    | '/recursion'
+    | '/sorting'
+  id:
+    | '__root__'
+    | '/'
+    | '/compare'
+    | '/graph'
+    | '/learn-dsa'
+    | '/practice'
+    | '/recursion'
+    | '/sitemap.xml'
+    | '/sorting'
+    | '/graph/$topic'
+    | '/recursion/$topic'
+    | '/sorting/$algo'
+    | '/graph/'
+    | '/recursion/'
+    | '/sorting/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CompareRoute: typeof CompareRoute
+  GraphRoute: typeof GraphRouteWithChildren
+  LearnDsaRoute: typeof LearnDsaRoute
+  PracticeRoute: typeof PracticeRoute
+  RecursionRoute: typeof RecursionRouteWithChildren
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  SortingRoute: typeof SortingRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sorting': {
+      id: '/sorting'
+      path: '/sorting'
+      fullPath: '/sorting'
+      preLoaderRoute: typeof SortingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recursion': {
+      id: '/recursion'
+      path: '/recursion'
+      fullPath: '/recursion'
+      preLoaderRoute: typeof RecursionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/practice': {
+      id: '/practice'
+      path: '/practice'
+      fullPath: '/practice'
+      preLoaderRoute: typeof PracticeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn-dsa': {
+      id: '/learn-dsa'
+      path: '/learn-dsa'
+      fullPath: '/learn-dsa'
+      preLoaderRoute: typeof LearnDsaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/graph': {
+      id: '/graph'
+      path: '/graph'
+      fullPath: '/graph'
+      preLoaderRoute: typeof GraphRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compare': {
+      id: '/compare'
+      path: '/compare'
+      fullPath: '/compare'
+      preLoaderRoute: typeof CompareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +258,100 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sorting/': {
+      id: '/sorting/'
+      path: '/'
+      fullPath: '/sorting/'
+      preLoaderRoute: typeof SortingIndexRouteImport
+      parentRoute: typeof SortingRoute
+    }
+    '/recursion/': {
+      id: '/recursion/'
+      path: '/'
+      fullPath: '/recursion/'
+      preLoaderRoute: typeof RecursionIndexRouteImport
+      parentRoute: typeof RecursionRoute
+    }
+    '/graph/': {
+      id: '/graph/'
+      path: '/'
+      fullPath: '/graph/'
+      preLoaderRoute: typeof GraphIndexRouteImport
+      parentRoute: typeof GraphRoute
+    }
+    '/sorting/$algo': {
+      id: '/sorting/$algo'
+      path: '/$algo'
+      fullPath: '/sorting/$algo'
+      preLoaderRoute: typeof SortingAlgoRouteImport
+      parentRoute: typeof SortingRoute
+    }
+    '/recursion/$topic': {
+      id: '/recursion/$topic'
+      path: '/$topic'
+      fullPath: '/recursion/$topic'
+      preLoaderRoute: typeof RecursionTopicRouteImport
+      parentRoute: typeof RecursionRoute
+    }
+    '/graph/$topic': {
+      id: '/graph/$topic'
+      path: '/$topic'
+      fullPath: '/graph/$topic'
+      preLoaderRoute: typeof GraphTopicRouteImport
+      parentRoute: typeof GraphRoute
+    }
   }
 }
 
+interface GraphRouteChildren {
+  GraphTopicRoute: typeof GraphTopicRoute
+  GraphIndexRoute: typeof GraphIndexRoute
+}
+
+const GraphRouteChildren: GraphRouteChildren = {
+  GraphTopicRoute: GraphTopicRoute,
+  GraphIndexRoute: GraphIndexRoute,
+}
+
+const GraphRouteWithChildren = GraphRoute._addFileChildren(GraphRouteChildren)
+
+interface RecursionRouteChildren {
+  RecursionTopicRoute: typeof RecursionTopicRoute
+  RecursionIndexRoute: typeof RecursionIndexRoute
+}
+
+const RecursionRouteChildren: RecursionRouteChildren = {
+  RecursionTopicRoute: RecursionTopicRoute,
+  RecursionIndexRoute: RecursionIndexRoute,
+}
+
+const RecursionRouteWithChildren = RecursionRoute._addFileChildren(
+  RecursionRouteChildren,
+)
+
+interface SortingRouteChildren {
+  SortingAlgoRoute: typeof SortingAlgoRoute
+  SortingIndexRoute: typeof SortingIndexRoute
+}
+
+const SortingRouteChildren: SortingRouteChildren = {
+  SortingAlgoRoute: SortingAlgoRoute,
+  SortingIndexRoute: SortingIndexRoute,
+}
+
+const SortingRouteWithChildren =
+  SortingRoute._addFileChildren(SortingRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CompareRoute: CompareRoute,
+  GraphRoute: GraphRouteWithChildren,
+  LearnDsaRoute: LearnDsaRoute,
+  PracticeRoute: PracticeRoute,
+  RecursionRoute: RecursionRouteWithChildren,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  SortingRoute: SortingRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
